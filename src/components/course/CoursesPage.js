@@ -23,7 +23,7 @@ class CoursesPage extends React.Component{
   }
 
   onClickSave(){
-    this.props.dispatch(courseActions.createCourse(this.state.course));
+    this.props.createCourse(this.state.course);
   }
 
   courseRow(course,index){
@@ -69,7 +69,15 @@ function mapStateToProps(state,ownProps){
   };
 }
 
+// Update the components handler to the dispatch you need the createCourse as a placeholder to link to dispatch
+function mapDispatchToProps(dispatch){
+  return{
+    createCourse: course => dispatch(courseActions.createCourse(course))
+  }
+}
+
 //The two parathesis, the first method connect returns another method which is called with CoursePage
 // if you do not have the second param of the connect then the component gets a dispatch property,
 // this.props.dispatch << allows actions.
-export default connect(mapStateToProps)(CoursesPage);
+// if you have the second param, it is a function that updates the component handlers
+export default connect(mapStateToProps,mapDispatchToProps)(CoursesPage);
