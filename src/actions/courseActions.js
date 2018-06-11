@@ -1,8 +1,19 @@
-import * as types from ./actionTypes
+import * as types from "./actionTypes";
+import CourseApi from "../api/mockCourseApi";
 // This is an action
-export function createCourse(course){
-  debugger;
+export function loadCoursesSuccess(courses){
   return{
-    type: type.CREATE_COURSE, course:course
+    type: types.LOAD_COURSES_SUCCESS, courses
   };
+}
+
+export function loadCourses(){
+  return function(dispatch){
+    //return a promise to do async
+    return CourseApi.getAllCourses().then(courses=>{
+      dispatch(loadCoursesSuccess(courses));
+    }).catch(error =>{
+      throw(error);
+    });
+  }
 }
