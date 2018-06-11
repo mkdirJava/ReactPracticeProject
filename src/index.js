@@ -9,11 +9,14 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import configureStore from './store/configureStore';
 import {Provider}  from 'react-redux';
 import{loadCourses} from './actions/courseActions';
+import{loadAuthors} from './actions/authorActions';
+
 
 
 // pass initial state from server or local storage
 const store = configureStore();
 store.dispatch(loadCourses());
+store.dispatch(loadAuthors());
 
 render(
   // the Provider takes in a store and also takes in the application so the application has full scope of the store.

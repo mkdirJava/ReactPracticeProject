@@ -7,6 +7,14 @@ export function loadCoursesSuccess(courses){
   };
 }
 
+export function createdCourseSuccess(course){
+  return{type:types.CREATE_COURSE_SUCCESS,course};
+}
+
+export function updateCourseSuccess(course){
+  return{type:types.UPDATE_COURSE_SUCCESS,course};
+}
+
 export function loadCourses(){
   return function(dispatch){
     //return a promise to do async
@@ -15,5 +23,16 @@ export function loadCourses(){
     }).catch(error =>{
       throw(error);
     });
-  }
+  };
+}
+
+//getState you can access the reux store
+export function saveCourse(course){
+  return function(dispatch, getState){
+    return CourseApi.saveCourse(course).then(savedCourse=>{
+      course.id ? dispatch(updateCourseSuccess(savedCourse)) : dispatch(createdCourseSuccess(savedCourse));
+    }).catch(error =>{
+      throw (error);
+    });
+  };
 }

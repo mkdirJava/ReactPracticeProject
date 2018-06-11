@@ -8,7 +8,7 @@ const CourseListRow = ({course})=>{
         <a href={course.watchHref} target="_blank" />
       </td>
       <td>
-        <Link to={'/course/' + course.d }>
+        <Link to={'/course/' + course.id}>
           {course.title}
         </Link></td>
       <td>
@@ -21,11 +21,11 @@ const CourseListRow = ({course})=>{
         {course.length}
       </td>
     </tr>
-  )
-}
+  );
+};
 
 CourseListRow.propTypes={
   course:PropTypes.object.isRequired
-}
+};
 
 export default CourseListRow;
